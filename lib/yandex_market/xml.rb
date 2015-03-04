@@ -102,8 +102,11 @@ module YandexMarket
             nodes = offer.except *attribute_keys
             
             @builder.offer attributes do
-              nodes.each do |key, value|
-                @builder.tag! key, value, {}.merge(key == :categoryId ? { type: "Own" } : {})
+              nodes.each do |key, values|
+                values = [values] unless values.is_a?(Array)
+                values.each do |value|
+                  @builder.tag! key, value, {}.merge(key == :categoryId ? { type: "Own" } : {})
+                end
               end
             end
           end
