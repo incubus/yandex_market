@@ -105,7 +105,10 @@ module YandexMarket
               nodes.each do |key, values|
                 values = [values] unless values.is_a?(Array)
                 values.each do |value|
-                  @builder.tag! key, value, {}.merge(key == :categoryId ? { type: "Own" } : {})
+                  prepared_value, prepared_attributes = value.is_a?(Hash) ?
+                    [value[:value], value.except(:value)] : [value, {}]
+                  @builder.tag! key, prepared_value,
+                    prepared_attributes.merge(key == :categoryId ? { type: "Own" } : prepared_attributes)
                 end
               end
             end
