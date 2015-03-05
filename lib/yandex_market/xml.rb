@@ -44,7 +44,7 @@ module YandexMarket
       
       # Builds shop details information.
       def self.shop_details
-        shop_details_keys = [:name, :company, :url, :phone]
+        shop_details_keys = [:name, :company, :url, :phone, :email]
         shop_details = YandexMarket::configuration.shop.slice *shop_details_keys
         
         shop_details.each do |key, value|
