@@ -97,7 +97,7 @@ module YandexMarket
         @builder.offers do
           
           offers.each do |offer|
-            attribute_keys = [:id, :type, :available];
+            attribute_keys = [:id, :group_id, :type, :available];
             attributes = offer.slice *attribute_keys
             nodes = offer.except *attribute_keys
             
